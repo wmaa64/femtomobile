@@ -29,7 +29,7 @@ const createOrder = async (data) => {
     const { email, mobile, name, address, items } = data;
 
     // ✅ Validate input
-    if (!email || !mobile || !name || !address || !items || items.length === 0) {
+    if (!mobile || !name || !address || !items || items.length === 0) {
       throw new Error("Missing order data");
     }
 
