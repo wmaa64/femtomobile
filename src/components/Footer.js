@@ -6,6 +6,7 @@ const Footer = () => {
     const { setShowCart, totalQuantities } = useStateContext();
     const router = useRouter();
 
+  
   return (
     <>
         <div className="footer-container" >
