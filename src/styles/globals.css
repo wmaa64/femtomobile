@@ -227,13 +227,9 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100dvh;
+  height: 100dvh; /* 👈 FIX iPhone */
 
-  background: rgba(0,0,0,0.5);
-
-  display: flex;
-  justify-content: center;
-  align-items: flex-end; /* 👈 key fix */
+  background: rgba(0, 0, 0, 0.5);
 
   z-index: 1000;
 }
@@ -241,18 +237,15 @@ html, body {
 .cart-container {
   width: 100%;
   max-width: 480px;
+  height: 100%;
 
-  height: 100dvh; /* 👈 key fix */
+  margin: 0 auto;
+  background: white;
 
-  background-color: white;
-  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
 
-  overflow-y: auto;
-
-  animation: slideUp 0.3s ease; /* 👈 correct animation */
-
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  overflow: hidden; /* 👈 important */
 }
 
 .mini-cart-container {
