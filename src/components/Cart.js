@@ -92,21 +92,22 @@ return (
         <div className="cart-container">
             <Link href="/">
                 <AiOutlineLeft />
-                <span className="heading">Your Cart</span>
-                <span className="cart-num-items">({totalQuantities} items)</span>
             </Link>
-
-            {cartItems.length < 1 && (
-                <EmptyCart>
-                    <Link href="/">
-                        <button type="button" onClick={() => setShowCart(false)} className="btn">
-                            Continue Shopping
-                        </button>
-                    </Link>
-                </EmptyCart>
-            )}
-
+            
+            <span className="heading">Your Cart</span>
+            <span className="cart-num-items">({totalQuantities} items)</span>
+            
             <div className="product-container">
+                {cartItems.length < 1 && (
+                    <EmptyCart>
+                        <Link href="/">
+                            <button type="button" onClick={() => setShowCart(false)} className="btn">
+                                Continue Shopping
+                            </button>
+                        </Link>
+                    </EmptyCart>
+                )}
+
                 {cartItems.length >= 1 && cartItems.map((item) => (
                     <>
                         <div className="product" key={item._id}>
