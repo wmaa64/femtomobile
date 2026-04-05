@@ -33,7 +33,7 @@ const orderSchema = new mongoose.Schema({
   name: { type: String, required: true },
   mobile: { type: String, required: true },
   address: { type: String, required: true },
-  email: { type: String },
+  email: { type: String, required: false }, // ✅ optional
   items: [orderItemSchema],
   totalPrice: { type: Number, required: true },
   paymentStatus: { type: String, default: "paid" },
