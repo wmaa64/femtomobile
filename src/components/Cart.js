@@ -24,38 +24,37 @@ const Cart = () => {
     const [loading, setLoading] = useState(false);    
 
     // ✅ Validate inputs dynamically
-    const validateInputs = (name, mobile,address, email) => {
+    const validateInputs = (name, mobile,address) => {
         //const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         const nameValid = name.trim().length > 0;
         const mobileValid = /^\d{11}$/.test(mobile);
         const addressValid = address.trim().length > 0;
-        const emailValid = true
         
-        setIsValid(nameValid && addressValid && emailValid && mobileValid);
+        setIsValid(nameValid && addressValid && mobileValid);
     };
 
     const handleNameChange = (e) => {
         const newName = e.target.value;
         setName(newName);
-        validateInputs(newName, mobile, address, email);
+        validateInputs(newName, mobile, address);
     };
 
     const handleMobileChange = (e) => {
         const newMobile = e.target.value;
         setMobile(newMobile);
-        validateInputs(name, newMobile, address, email);
+        validateInputs(name, newMobile, address);
     };
 
     const handleAddressChange = (e) => {
         const newAddress = e.target.value;
         setAddress(newAddress);
-        validateInputs(name, mobile, newAddress, email);
+        validateInputs(name, mobile, newAddress);
     };
 
     const handleEmailChange = (e) => {
         const newEmail = e.target.value;
         setEmail(newEmail);
-        validateInputs(name, mobile, address, newEmail);
+        //validateInputs(name, mobile, address, newEmail);
     };
 
 
