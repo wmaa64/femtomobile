@@ -90,11 +90,11 @@ const Cart = () => {
 return (
     <div className="cart-wrapper" ref={cartRef}>
         <div className="cart-container">
-            <button type="button" className="cart-heading" onClick={() => setShowCart(false)}>
+            <Link href="/">
                 <AiOutlineLeft />
                 <span className="heading">Your Cart</span>
                 <span className="cart-num-items">({totalQuantities} items)</span>
-            </button>
+            </Link>
 
             {cartItems.length < 1 && (
                 <EmptyCart>
@@ -131,37 +131,39 @@ return (
                         </div>
                     </>
                 ))}
+            
+                {cartItems.length >= 1 && (
+                    <div className="cart-bottom">
+                        <div className="customer-info">
+                            <label>Enter Valid Email:</label>
+                            <input  className="input-field" type="email"  placeholder="Enter your email"         value={email}   required
+                                onChange={handleEmailChange} 
+                            />
+                            <label>Enter Phone Number (11 digits):</label>
+                            <input  className="input-field" type="tel"    placeholder="Enter your phone number"  value={mobile}  required
+                                onChange={handleMobileChange}
+                            />
+                        </div>
+                        
+                        <div className="total">
+                            <h3>Subtotal including 50 EGP for Shipping:</h3>
+                            <h3>جنيه{eUSLocale(totalPrice + 50)}</h3>
+                        </div>
+                        
+                        <div className="btn-container">
+                            <button type="button" className="btn" onClick={handleCheckout} disabled={!isValid || loading} 
+                                style={{
+                                opacity: !isValid || loading ? 0.5 : 1,
+                                cursor: !isValid || loading ? "not-allowed" : "pointer",
+                                }}>
+                                {loading ? "Processing..." : "Place Order"}
+                            </button>
+                        </div>
+                    </div>
+                )}
+
             </div>
 
-            {cartItems.length >= 1 && (
-                <div className="cart-bottom">
-                     <div className="customer-info">
-                        <label>Enter Valid Email:</label>
-                        <input  className="input-field" type="email"  placeholder="Enter your email"         value={email}   required
-                            onChange={handleEmailChange} 
-                        />
-                        <label>Enter Phone Number (11 digits):</label>
-                        <input  className="input-field" type="tel"    placeholder="Enter your phone number"  value={mobile}  required
-                            onChange={handleMobileChange}
-                        />
-                    </div>
-                    
-                    <div className="total">
-                        <h3>Subtotal including 50 EGP for Shipping:</h3>
-                        <h3>جنيه{eUSLocale(totalPrice + 50)}</h3>
-                    </div>
-                    
-                    <div className="btn-container">
-                        <button type="button" className="btn" onClick={handleCheckout} disabled={!isValid || loading} 
-                            style={{
-                            opacity: !isValid || loading ? 0.5 : 1,
-                            cursor: !isValid || loading ? "not-allowed" : "pointer",
-                            }}>
-                            {loading ? "Processing..." : "Place Order"}
-                        </button>
-                    </div>
-                </div>
-            )}
         </div>
     </div>
 );
