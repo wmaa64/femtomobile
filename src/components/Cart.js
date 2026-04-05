@@ -24,11 +24,13 @@ const Cart = () => {
     const [loading, setLoading] = useState(false);    
 
     useEffect(() => {
-    const nameValid = name.trim().length > 0;
-    const mobileValid = /^\d{11}$/.test(mobile);
-    const addressValid = address.trim().length > 0;
+        const cleanMobile = normalizeNumber(mobile).replace(/\s/g, '');
 
-    setIsValid(nameValid && addressValid && mobileValid);
+        const nameValid = name.trim().length > 0;
+        const addressValid = address.trim().length > 0;
+        const mobileValid = /^\d{11}$/.test(cleanMobile);
+
+        setIsValid(nameValid && addressValid && mobileValid);
     }, [name, mobile, address]);
 
     const handleNameChange = (e) => {
@@ -36,7 +38,8 @@ const Cart = () => {
     };
 
     const handleMobileChange = (e) => {
-        setMobile(e.target.value);
+        const normalized = normalizeNumber(e.target.value);
+        setMobile(normalized);
     };
 
     const handleAddressChange = (e) => {
@@ -47,6 +50,10 @@ const Cart = () => {
         setEmail(e.target.value);
     };
 
+    const normalizeNumber = (value) => {
+        return value
+            .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)) // Arabic
+    };
 
     const handleCheckout = async () => {
         if (!isValid) {
@@ -152,10 +159,10 @@ return (
                             />
 
                             <label>Enter Phone Number (11 digits):</label>
-                            <input  className="input-field" type="tel"    placeholder="Enter your phone number"  value={mobile}  required
-                                onChange={handleMobileChange}
+                            <input type="tel"  inputMode="numeric"  className="input-field"  placeholder="01XXXXXXXXX"
+                                value={mobile}    onChange={handleMobileChange}
                             />
-
+                            
                             <label>Enter Address:</label>
                             <input  className="input-field" type="text"    placeholder="Enter your address"  value={address}  required
                                 onChange={handleAddressChange}

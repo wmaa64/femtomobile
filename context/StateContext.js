@@ -73,9 +73,7 @@ const onAdd = (product, quantity) => {
   }
 
   // ✅ safer toast message
-  toast.success(
-    `${quantity} ${product.name?.en || product.name} added to the cart.`
-  );
+  //toast.success(`${quantity} ${product.name?.en || product.name} added to the cart.`  );
 };
 
     const onRemove = (product) => {
