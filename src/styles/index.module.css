@@ -1,0 +1,14 @@
+.section_container {
+  width: 100%;
+  height: 20vh; /* 20% of screen height */
+  /* position: relative; /* required for next/image with fill */
+  position: sticky;
+  top: -80px; /* 👈 IMPORTANT: same as header height */
+
+  z-index: 999; /* أقل من الهيدر */
+  overflow: hidden;
+}
+
+.section_image {
+  object-fit:fill; /* ensures image covers container without distortion */
+}
