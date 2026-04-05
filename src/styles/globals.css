@@ -404,8 +404,16 @@ span.item-desc {
   width: 100%;
 }
 
+
 .btn {
   width: 100%;
+  background: green;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
 }
 
 .mini-cart-container {
