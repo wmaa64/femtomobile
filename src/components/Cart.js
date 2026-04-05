@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {AiOutlineLeft} from "react-icons/ai";
@@ -23,38 +23,28 @@ const Cart = () => {
     const [isValid, setIsValid] = useState(false);
     const [loading, setLoading] = useState(false);    
 
-    // ✅ Validate inputs dynamically
-    const validateInputs = (name, mobile,address) => {
-        //const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        const nameValid = name.trim().length > 0;
-        const mobileValid = /^\d{11}$/.test(mobile);
-        const addressValid = address.trim().length > 0;
-        
-        setIsValid(nameValid && addressValid && mobileValid);
-    };
+    useEffect(() => {
+    const nameValid = name.trim().length > 0;
+    const mobileValid = /^\d{11}$/.test(mobile);
+    const addressValid = address.trim().length > 0;
+
+    setIsValid(nameValid && addressValid && mobileValid);
+    }, [name, mobile, address]);
 
     const handleNameChange = (e) => {
-        const newName = e.target.value;
-        setName(newName);
-        validateInputs(newName, mobile, address);
+        setName(e.target.value);
     };
 
     const handleMobileChange = (e) => {
-        const newMobile = e.target.value;
-        setMobile(newMobile);
-        validateInputs(name, newMobile, address);
+        setMobile(e.target.value);
     };
 
     const handleAddressChange = (e) => {
-        const newAddress = e.target.value;
-        setAddress(newAddress);
-        validateInputs(name, mobile, newAddress);
+        setAddress(e.target.value);
     };
 
     const handleEmailChange = (e) => {
-        const newEmail = e.target.value;
-        setEmail(newEmail);
-        //validateInputs(name, mobile, address, newEmail);
+        setEmail(e.target.value);
     };
 
 
