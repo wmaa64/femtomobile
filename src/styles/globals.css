@@ -274,8 +274,6 @@ html, body {
   font-size: 16px;
   cursor: pointer;
 }
-/*  -----*/
-
 
 .mini-cart-container {
   align-items: center;
@@ -515,3 +513,7 @@ span.item-desc {
   border: none;
 }
 
+.input-field {
+  font-size: 18px; /* or 16px minimum for iPhone */
+  /* padding: 12px;   /* makes it look bigger and easier to tap */
+}

@@ -26,10 +26,10 @@ const getOrdersByDate = async (date) => {
 // create a new Order
 const createOrder = async (data) => {
   try {
-    const { email, mobile, items } = data;
+    const { email, mobile, name, address, items } = data;
 
     // ✅ Validate input
-    if (!email || !mobile || !items || items.length === 0) {
+    if (!email || !mobile || !name || !address || !items || items.length === 0) {
       throw new Error("Missing order data");
     }
 
@@ -55,8 +55,10 @@ const createOrder = async (data) => {
 
     // 🧾 Create order
     const newOrder = new Order({
-      email,
+      name,
       mobile,
+      address,
+      email,
       items: orderItems,
       totalPrice,
       paymentStatus: "pending",   // no Stripe

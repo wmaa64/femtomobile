@@ -15,30 +15,49 @@ const Cart = () => {
     const {totalPrice,totalQuantities,cartItems,setShowCart,
         setCartItems,setTotalPrice, setTotalQuantities, onRemove,} = useStateContext();
 
-    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [mobile, setMobile] = useState("");
+    const [address, setAddress] = useState("");              
+    const [email, setEmail] = useState("");
     
     const [isValid, setIsValid] = useState(false);
     const [loading, setLoading] = useState(false);    
 
     // ✅ Validate inputs dynamically
-    const validateInputs = (email, mobile) => {
-        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const validateInputs = (name, mobile,address, email) => {
+        //const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const nameValid = name.trim().length > 0;
         const mobileValid = /^\d{11}$/.test(mobile);
-        setIsValid(emailValid && mobileValid);
+        const addressValid = address.trim().length > 0;
+        const emailValid = true
+        
+        setIsValid(nameValid && addressValid && emailValid && mobileValid);
     };
 
-    const handleEmailChange = (e) => {
-        const newEmail = e.target.value;
-        setEmail(newEmail);
-        validateInputs(newEmail, mobile);
+    const handleNameChange = (e) => {
+        const newName = e.target.value;
+        setName(newName);
+        validateInputs(newName, mobile, address, email);
     };
 
     const handleMobileChange = (e) => {
         const newMobile = e.target.value;
         setMobile(newMobile);
-        validateInputs(email, newMobile);
+        validateInputs(name, newMobile, address, email);
     };
+
+    const handleAddressChange = (e) => {
+        const newAddress = e.target.value;
+        setAddress(newAddress);
+        validateInputs(name, mobile, newAddress, email);
+    };
+
+    const handleEmailChange = (e) => {
+        const newEmail = e.target.value;
+        setEmail(newEmail);
+        validateInputs(name, mobile, address, newEmail);
+    };
+
 
     const handleCheckout = async () => {
         if (!isValid) {
@@ -58,6 +77,8 @@ const Cart = () => {
                 items: cartItems,
                 email,
                 mobile,
+                name,
+                address,
             }),
             });
 
@@ -94,8 +115,8 @@ return (
                 <AiOutlineLeft />
             </Link>
             
-            <span className="heading">Your Cart</span>
-            <span className="cart-num-items">({totalQuantities} items)</span>
+            <span className="heading">Your Cart has ({totalQuantities} items)</span>
+            {/*<span className="cart-num-items">({totalQuantities} items)</span>*/}
             
             <div className="product-container">
                 {cartItems.length < 1 && (
@@ -136,13 +157,24 @@ return (
                 {cartItems.length >= 1 && (
                     <div className="cart-bottom">
                         <div className="customer-info">
-                            <label>Enter Valid Email:</label>
-                            <input  className="input-field" type="email"  placeholder="Enter your email"         value={email}   required
-                                onChange={handleEmailChange} 
+                            <label>Enter Name:</label>
+                            <input  className="input-field" type="text"  placeholder="Enter your name"         value={name}   required
+                                onChange={handleNameChange} 
                             />
+
                             <label>Enter Phone Number (11 digits):</label>
                             <input  className="input-field" type="tel"    placeholder="Enter your phone number"  value={mobile}  required
                                 onChange={handleMobileChange}
+                            />
+
+                            <label>Enter Address:</label>
+                            <input  className="input-field" type="text"    placeholder="Enter your address"  value={address}  required
+                                onChange={handleAddressChange}
+                            />
+
+                            <label>Enter Valid Email:</label>
+                            <input  className="input-field" type="email"  placeholder="Enter your email"   value={email}   
+                                onChange={handleEmailChange} 
                             />
                         </div>
                         
