@@ -1,10 +1,12 @@
 import React from 'react';
+import { useRouter  } from "next/router";
 import { AiOutlineShopping, FiShoppingCart } from "react-icons/fi";
 import { useStateContext } from "../../context/StateContext";
 import Cart from "../components/Cart";
 
 const Header = () => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
+  const router = useRouter();
 
   return (
     <>
@@ -14,7 +16,7 @@ const Header = () => {
         <button
           type="button"
           className="cart-icon"
-          onClick={() => setShowCart(true)}
+          onClick={() =>router.push('/cartpage')}
         >
           <FiShoppingCart />
           <span className="cart-item-qty">{totalQuantities}</span>

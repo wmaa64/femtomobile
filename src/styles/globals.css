@@ -222,29 +222,60 @@ html, body {
   100% {  transform: translateX(0%);  }
 }
 
+/* CART PAGE FIXED FOR MOBILE */
+
 .cart-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100dvh; /* 👈 FIX iPhone */
-
-  background: rgba(0, 0, 0, 0.5);
-
-  z-index: 1000;
+  position: relative; /* was fixed */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: transparent; /* remove dark overlay if needed */
 }
 
 .cart-container {
   width: 100%;
   max-width: 480px;
-  height: 100dvh;
-
-  margin: 0 auto;
   background: white;
-
   display: flex;
   flex-direction: column;
+  min-height: 400px; /* adjust as needed */
 }
+
+/* Make product list scrollable */
+.product-container {
+  flex: 1;          /* takes remaining space */
+  overflow-y: auto;
+  padding: 10px;
+}
+
+/* Bottom checkout section always visible */
+.cart-bottom {
+  padding: 12px;
+  border-top: 1px solid #eee;
+  background: white;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  padding-bottom: env(safe-area-inset-bottom); /* iPhone safe area */
+}
+
+/* Button full width */
+.btn-container {
+  width: 100%;
+}
+
+.btn {
+  width: 100%;
+  background-color: #0070f3;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+/*  -----*/
+
 
 .mini-cart-container {
   align-items: center;
@@ -322,11 +353,6 @@ span.item-desc {
   margin: 0 auto;
 }
 
-.product-container {
-  flex: 1;              /* 👈 takes remaining space */
-  overflow-y: auto;     /* 👈 scroll here only */
-  padding: 10px;
-}
 
 .product {
   display: flex;
@@ -383,37 +409,12 @@ span.item-desc {
   border: none;
 }
 
-.cart-bottom {
-  padding: 12px;
-  border-top: 1px solid #eee;
-  background: white;
-
-  position: sticky;   /* 👈 key fix */
-  bottom: 0;
-}
-
 .cart-bottom > .customer-info {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 20px;
   align-items: flex-start;
-}
-
-.btn-container {
-  width: 100%;
-}
-
-
-.btn {
-  width: 100%;
-  background: green;
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
 }
 
 .mini-cart-container {
@@ -514,14 +515,3 @@ span.item-desc {
   border: none;
 }
 
-.cart-bottom {
-  bottom: 12px;
-  right: 5px;
-  width: 100%;
-  padding: 30px 65px;
-}
-
-.btn-container {
-  width: 400px;
-  margin: auto;
-}
