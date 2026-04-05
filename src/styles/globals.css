@@ -237,15 +237,13 @@ html, body {
 .cart-container {
   width: 100%;
   max-width: 480px;
-  height: 100%;
+  height: 100dvh;
 
   margin: 0 auto;
   background: white;
 
   display: flex;
   flex-direction: column;
-
-  overflow: hidden; /* 👈 important */
 }
 
 .mini-cart-container {
@@ -325,9 +323,9 @@ span.item-desc {
 }
 
 .product-container {
-  overflow: auto;
-  max-height: 70vh;
-  padding: 20px 10px;
+  flex: 1;              /* 👈 takes remaining space */
+  overflow-y: auto;     /* 👈 scroll here only */
+  padding: 10px;
 }
 
 .product {
@@ -386,7 +384,12 @@ span.item-desc {
 }
 
 .cart-bottom {
-  padding: 20px 10px;
+  padding: 12px;
+  border-top: 1px solid #eee;
+  background: white;
+
+  position: sticky;   /* 👈 key fix */
+  bottom: 0;
 }
 
 .cart-bottom > .customer-info {
@@ -398,6 +401,10 @@ span.item-desc {
 }
 
 .btn-container {
+  width: 100%;
+}
+
+.btn {
   width: 100%;
 }
 
@@ -509,15 +516,4 @@ span.item-desc {
 .btn-container {
   width: 400px;
   margin: auto;
-}
-
-.btn {
-  width: 100%;
-  background: green;
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
 }
