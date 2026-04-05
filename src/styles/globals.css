@@ -112,7 +112,7 @@ html, body {
 .image-wrapper {
   position: relative;
   width: 100%;
-  height: 60vh  /* 👈 control image height here */
+  height: 40vh  /* 👈 control image height here */
 }
 
 .product-image {
@@ -248,7 +248,7 @@ html, body {
   background-color: white;
   padding: 20px 10px;
   
-  animation: slideUp 0.3s ease;
+  animation: move 0.3s ease;
 
   overflow-y: auto;
 }
