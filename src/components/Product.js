@@ -49,13 +49,14 @@ return (
                 <div className="image-wrapper">
                     <Image  src={product.image}  alt={product.name.en} fill className="product-image" /> 
                 </div>                         
-                <p className="product-name">{product.name.en}
-                     جنيه مصرى
+                <p className="product-name">{product.name.en}</p>
+                <p className="product-name">
                     {product.price.toLocaleString("ar-EG", {
                         maximumFractionDigits: 2,
                         minimumFractionDigits: 2,
-                    })}
+                    })}  جنيه مصرى
                 </p>
+
 
                 <p className="product-description">
                     {product.description.ar}
