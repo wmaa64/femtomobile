@@ -50,7 +50,7 @@ return (
                     <Image  src={product.image}  alt={product.name.en} fill className="product-image" /> 
                 </div>                         
                 <p className="product-name">{product.name.en}</p>
-                <p className="product-name">
+                <p className="product-name" style={{ color: "green"}}>
                     {product.price.toLocaleString("ar-EG", {
                         maximumFractionDigits: 2,
                         minimumFractionDigits: 2,
